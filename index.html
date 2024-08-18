@@ -47,7 +47,7 @@
                 <form action="#" id="formularioContacto">
                     <div class="mb-3">
                         <label for="Nombre" class="form-label">Nombre</label>
-                        <input type="text" name="Nombre" class="form-control requeridoEnviar" id="Nombre" placeholder="Introduce tu nombre">
+                        <input type="text" name="Nombre" class="form-control requeridoEnviar" id="Nombre" onkeypress="return validaSoloLetras(event)" placeholder="Introduce tu nombre">
                     </div>
                     <div class="mb-3">
                         <label for="Email" class="form-label">Correo Eletrónico</label>

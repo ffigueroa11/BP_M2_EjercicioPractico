@@ -30,88 +30,6 @@ $(document).ready(function() {
 
     })
 
-    function validaDatosEnviados(nameClass) {
-
-        let textoLabel = ''
-        let contError = 0
-        let cantElem = $(nameClass).length
-
-        $(nameClass).each(function() {
-
-            if ($(this).is("input[type=text]")) {
-                if ($(this).val().length === 0) {
-                    let label = $(this).attr('name')
-                    console.log(label)
-                    textoLabel = textoLabel + label + '<br>'
-                    contError = contError + 1
-
-                }
-            }
-
-            if ($(this).is("input[type=email]")) {
-                if ($(this).val().length === 0) {
-                    let label = $('label[for="' + $(this).attr('id') + '"]');
-                    textoLabel = textoLabel + label.text().replace(':', '') + '<br>';
-                    contError = contError + 1;
-                }
-            }
-
-            if ($(this).is("textarea")) {
-                if ($(this).val().length === 0) {
-                    let label = $('label[for="' + $(this).attr('id') + '"]');
-                    console.log(label)
-                    textoLabel = textoLabel + label.text().replace(':', '') + '<br>';
-                    contError = contError + 1;
-                }
-            }
-
-        })
-
-
-        if (contError > 0) {
-            //variables de mensaje
-            alert_encabezado = '<i class="fa fa-exclamation-triangle red"></i>&nbsp;&nbsp;Error';
-            //mostrar mensaje de error 
-            var desc_error = 'Ingrese o seleccione un valor en los siguientes campos:<br><br>' + textoLabel;
-
-            $.alert({
-                title: alert_encabezado,
-                content: desc_error,
-                confirmButton: alert_btnAceptarTx,
-                confirmButtonClass: alert_btnAceptarClass,
-                cancelButtonClass: alert_btnCancelarClass,
-                closeIcon: true,
-                keyboardEnabled: true,
-                confirm: function() {}
-            });
-
-            return false
-        }
-
-        return true
-
-    }
-
-    function validasololetras(e) {
-
-        tecla = (document.all) ? e.keyCode : e.which;
-        console.log(tecla)
-            //Tecla de retroceso para borrar, siempre la permite
-        if (tecla == 8 || tecla == 32) {
-            return true;
-        }
-
-        // Patrón de entrada, en este caso solo acepta numeros y letras
-        patron = /[A-Za-z]/;
-        tecla_final = String.fromCharCode(tecla);
-        return patron.test(tecla_final);
-    }
-
-    function validarEmail(email) {
-        // Expresión regular para validar el formato del correo electrónico
-        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    }
 
     $('#Email').on('focusout', function() {
         var email = $(this).val();
@@ -138,3 +56,86 @@ $(document).ready(function() {
         }
     });
 })
+
+function validaSoloLetras(e) {
+
+    tecla = (document.all) ? e.keyCode : e.which;
+    console.log(tecla)
+        //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8 || tecla == 32) {
+        return true;
+    }
+
+    // Patrón de entrada, en este caso solo acepta numeros y letras
+    patron = /[A-Za-z]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+
+function validarEmail(email) {
+    // Expresión regular para validar el formato del correo electrónico
+    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+function validaDatosEnviados(nameClass) {
+
+    let textoLabel = ''
+    let contError = 0
+    let cantElem = $(nameClass).length
+
+    $(nameClass).each(function() {
+
+        if ($(this).is("input[type=text]")) {
+            if ($(this).val().length === 0) {
+                let label = $(this).attr('name')
+                console.log(label)
+                textoLabel = textoLabel + label + '<br>'
+                contError = contError + 1
+
+            }
+        }
+
+        if ($(this).is("input[type=email]")) {
+            if ($(this).val().length === 0) {
+                let label = $('label[for="' + $(this).attr('id') + '"]');
+                textoLabel = textoLabel + label.text().replace(':', '') + '<br>';
+                contError = contError + 1;
+            }
+        }
+
+        if ($(this).is("textarea")) {
+            if ($(this).val().length === 0) {
+                let label = $('label[for="' + $(this).attr('id') + '"]');
+                console.log(label)
+                textoLabel = textoLabel + label.text().replace(':', '') + '<br>';
+                contError = contError + 1;
+            }
+        }
+
+    })
+
+
+    if (contError > 0) {
+        //variables de mensaje
+        alert_encabezado = '<i class="fa fa-exclamation-triangle red"></i>&nbsp;&nbsp;Error';
+        //mostrar mensaje de error 
+        var desc_error = 'Ingrese o seleccione un valor en los siguientes campos:<br><br>' + textoLabel;
+
+        $.alert({
+            title: alert_encabezado,
+            content: desc_error,
+            confirmButton: alert_btnAceptarTx,
+            confirmButtonClass: alert_btnAceptarClass,
+            cancelButtonClass: alert_btnCancelarClass,
+            closeIcon: true,
+            keyboardEnabled: true,
+            confirm: function() {}
+        });
+
+        return false
+    }
+
+    return true
+
+}
