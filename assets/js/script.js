@@ -23,7 +23,11 @@ $(document).ready(function() {
         if (!validaDatosEnviados(nameClass)) return false
 
         $('#spanNombre').html(Nombre)
-        $('#spanCorreo').html(Correo)
+
+        $('#correoLink').text(Correo); // Asignar el valor al texto del enlace
+        $('#correoLink').attr('href', 'mailto:' + Correo); // Asignar el atributo href del enlace
+
+
         $('#spanMensaje').html(Mensaje)
 
         $('#formularioContacto')[0].reset()
