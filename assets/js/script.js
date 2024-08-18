@@ -17,14 +17,16 @@ $(document).ready(function() {
         let nameClass = '.requeridoEnviar'
 
         let Nombre = $('#Nombre').val()
-        let Email = $('#Email').val()
+        let Correo = $('#Email').val()
         let Mensaje = $('#Mensaje').val()
 
         if (!validaDatosEnviados(nameClass)) return false
 
-        $('#labelNombre').text(Nombre)
-        $('#labelCorreo').text(Correo)
-        $('#labelMensaje').text(Mensaje)
+        $('#spanNombre').html(Nombre)
+        $('#spanCorreo').html(Correo)
+        $('#spanMensaje').html(Mensaje)
+
+        $('#formularioContacto')[0].reset()
 
     })
 
@@ -86,5 +88,53 @@ $(document).ready(function() {
             return false
         }
 
+        return true
+
     }
+
+    function validasololetras(e) {
+
+        tecla = (document.all) ? e.keyCode : e.which;
+        console.log(tecla)
+            //Tecla de retroceso para borrar, siempre la permite
+        if (tecla == 8 || tecla == 32) {
+            return true;
+        }
+
+        // Patrón de entrada, en este caso solo acepta numeros y letras
+        patron = /[A-Za-z]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function validarEmail(email) {
+        // Expresión regular para validar el formato del correo electrónico
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    $('#Email').on('focusout', function() {
+        var email = $(this).val();
+
+        if (email === '') {
+            $.alert({
+                title: '<i class="fas fa-exclamation-triangle"></i> Advertencia',
+                content: 'El campo de correo electrónico no puede estar vacío.',
+                type: 'orange',
+                onClose: function() {
+                    $('#Email').focus(); // Mantener el foco en el campo
+                }
+            });
+        } else if (!validarEmail(email)) {
+            $.alert({
+                title: '<i class="fas fa-exclamation-triangle"></i> Formato Incorrecto',
+                content: 'Por favor, introduce un correo electrónico válido.',
+                type: 'red',
+                onClose: function() {
+                    $('#Email').focus(); // Mantener el foco en el campo
+                }
+            });
+
+        }
+    });
 })
