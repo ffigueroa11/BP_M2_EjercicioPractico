@@ -3,10 +3,6 @@ body {
     padding: 0;
 }
 
-header {
-    height: 100px;
-}
-
 header h1 {
     margin: 0;
     background-color: rgb(59, 118, 245);
@@ -18,4 +14,12 @@ header h1 {
 
 .nav {
     margin-left: auto;
+}
+
+footer {
+    background-color: #464444;
+}
+
+section {
+    padding: 60px;
 }
