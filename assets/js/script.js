@@ -64,8 +64,8 @@ $(document).ready(function() {
 function validaSoloLetras(e) {
 
     tecla = (document.all) ? e.keyCode : e.which;
-    console.log(tecla)
-        //Tecla de retroceso para borrar, siempre la permite
+
+    //Tecla de retroceso para borrar, siempre la permite
     if (tecla == 8 || tecla == 32) {
         return true;
     }
@@ -93,7 +93,7 @@ function validaDatosEnviados(nameClass) {
         if ($(this).is("input[type=text]")) {
             if ($(this).val().length === 0) {
                 let label = $(this).attr('name')
-                console.log(label)
+
                 textoLabel = textoLabel + label + '<br>'
                 contError = contError + 1
 
@@ -111,7 +111,7 @@ function validaDatosEnviados(nameClass) {
         if ($(this).is("textarea")) {
             if ($(this).val().length === 0) {
                 let label = $('label[for="' + $(this).attr('id') + '"]');
-                console.log(label)
+
                 textoLabel = textoLabel + label.text().replace(':', '') + '<br>';
                 contError = contError + 1;
             }
