@@ -1,6 +1,18 @@
-body {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 header h1 {
@@ -20,6 +32,19 @@ footer {
     background-color: #464444;
 }
 
-section {
-    padding: 60px;
+#resumen label {
+    font-weight: bold;
+}
+
+main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
 }
