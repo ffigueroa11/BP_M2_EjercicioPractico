@@ -1,3 +1,15 @@
+let alert_encabezado = '';
+let alert_btnAceptarTx = 'Aceptar';
+let alert_btnCancelarTx = 'Cancelar';
+let alert_btnAceptarClass = 'btn btn-sm btn-primary btn_text_capitalize';
+let alert_btnCancelarClass = 'btn btn-sm btn-default btn_text_capitalize';
+let alert_columnClass = 'col-md-6 col-md-offset-3';
+let confirm_encabezado = '';
+let confirm_btnAceptarTx = 'Aceptar';
+let confirm_btnCancelarTx = 'Cancelar';
+let confirm_btnAceptarClass = 'btn btn-sm btn-primary btn_text_capitalize';
+let confirm_btnCancelarClass = 'btn btn-sm btn-default btn_text_capitalize';
+
 $(document).ready(function() {
 
     $('#enviar-form').click(function() {
@@ -9,6 +21,10 @@ $(document).ready(function() {
         let Mensaje = $('#Mensaje').val()
 
         if (!validaDatosEnviados(nameClass)) return false
+
+        $('#labelNombre').text(Nombre)
+        $('#labelCorreo').text(Correo)
+        $('#labelMensaje').text(Mensaje)
 
     })
 
@@ -25,11 +41,30 @@ $(document).ready(function() {
                     let label = $(this).attr('name')
                     console.log(label)
                     textoLabel = textoLabel + label + '<br>'
+                    contError = contError + 1
 
                 }
             }
 
+            if ($(this).is("input[type=email]")) {
+                if ($(this).val().length === 0) {
+                    let label = $('label[for="' + $(this).attr('id') + '"]');
+                    textoLabel = textoLabel + label.text().replace(':', '') + '<br>';
+                    contError = contError + 1;
+                }
+            }
+
+            if ($(this).is("textarea")) {
+                if ($(this).val().length === 0) {
+                    let label = $('label[for="' + $(this).attr('id') + '"]');
+                    console.log(label)
+                    textoLabel = textoLabel + label.text().replace(':', '') + '<br>';
+                    contError = contError + 1;
+                }
+            }
+
         })
+
 
         if (contError > 0) {
             //variables de mensaje
